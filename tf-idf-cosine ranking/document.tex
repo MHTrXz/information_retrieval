@@ -1,0 +1,191 @@
+\documentclass[12pt, dvipsnames, svgnames, x11names,]{article}
+
+\usepackage{xcolor}
+% URLs and hyperlinks ---------------------------------------
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=NavyBlue,
+	filecolor=magenta,      
+	urlcolor=blue,
+}
+\usepackage{xurl}
+%---------------------------------------------------
+\usepackage[inline]{enumitem}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{float}
+\renewcommand{\arraystretch}{1.40}
+
+% adjust a verrrrry big table -------------------------------
+\usepackage{adjustbox}
+% -----------------------------------------------------------
+
+\usepackage{array}
+% center the p columns and m --------------------------------------------------------------
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+% -------------------------------------------------------------------------------------------------------------
+
+% price
+\usepackage{marvosym}
+% ----------
+
+\usepackage{xepersian}
+\settextfont{Arial}
+\setdigitfont{Arial}
+
+\begin{document}
+	\begin{titlepage}
+		\centering
+		\vspace{1cm}
+		{\Huge {\textbf{\lr{TF-IDF cosine Ranging}}}\par}
+		\vspace{15mm}
+		\vspace{16mm}
+		\includegraphics[width=12cm]{images/00.png} \par
+		\vfill \par	\vfill
+		\vspace{16mm}
+		{\normalsize	سیدمحمدحسین هاشمی  4022363143 \par}
+		\vspace{1cm}
+		{\large فروردین ۱۴۰3\par}
+	\end{titlepage}
+	\tableofcontents
+	\newpage
+	
+	\section{کتابخانه‌های مورد نیاز}
+
+		\begin{center}
+			{\includegraphics[width=6cm]{images/01.png}}
+		\end{center}
+
+		{\normalsize کتابخانه‌های مورد نیاز که در پروژه لود شده‌اند.}
+
+	\section{کلاس \lr{Inverted Index}}
+
+		\begin{center}
+			{\includegraphics[width=7cm]{images/02.png}}
+		\end{center}
+
+		{\normalsize تمام کدهای مربوطه در این کلاس نوشته می‌شود}
+
+	\section{متد \lr{--init--}}
+		
+		\begin{center}
+			{\includegraphics[width=11cm]{images/03.png}}
+		\end{center}
+		
+		{\normalsize
+			در اینجا متغییرهای موردنیاز ایجاد و متدهای \lr{build\_index}، \lr{tf\_df} و \lr{compute\_tfidf} به ترتیب برای ساخت ایندکس معکوس،‌ محاسبه \lr{tf} و \lr{idf} استفاده می‌شود.
+		} \par
+
+	\section{متد \lr{\_preprocess}}
+		
+		\begin{center}
+			{\includegraphics[width=8cm]{images/04.png}}
+		\end{center}
+		
+		{\normalsize 
+			در این متد جداسازی کلمات از متن انجام می‌شود.
+		}
+		
+	\section{متد \lr{\_build\_index}}
+	
+		\begin{center}
+			{\includegraphics[width=8cm]{images/05.png}}
+		\end{center}
+	
+		{\normalsize 
+			در این متد ایندکس معکوس ساخته‌شده و ذخیره می‌شود.
+		}
+		
+	\section{متد \lr{\_tf\_df}}
+		
+		\begin{center}
+			{\includegraphics[width=8cm]{images/06.png}}
+		\end{center}
+		
+		{\normalsize 
+			در این متد \lr{tf} و \lr{df} محاسبه و ذخیره می‌شوند.
+		}
+		
+	\section{متد \lr{\_compute\_tfdf}}
+		
+		\begin{center}
+			{\includegraphics[width=12cm]{images/07.png}}
+		\end{center}
+		
+		{\normalsize 
+			در این متد امتیاز \lr{tf idf} برای هر داکیومنت محاسبه و ذخیره می‌شود.
+		}		
+		
+	\section{متد \lr{\_magnitude}}
+		
+		\begin{center}
+		{\includegraphics[width=8cm]{images/08.png}}
+		\end{center}
+		
+		{\normalsize 
+		در این متد ضرب داخلی دو بردار محاسبه می‌شود.
+		}
+				
+		
+	\section{متد \lr{\_magnitude}}
+		
+		\begin{center}
+			{\includegraphics[width=8cm]{images/09.png}}
+		\end{center}
+		
+		{\normalsize 
+			در این متد اندازه بردار محاسبه می‌شود.
+		}
+		
+	\section{متد \lr{\_cosine\_similarity}}
+		
+		\begin{center}
+			{\includegraphics[width=10cm]{images/10.png}}
+		\end{center}
+		
+		{\normalsize 
+			در اینجا امتیاز شباهت دو بردار محاسبه می‌شود و به طور کلی فرمول آن به شرح زیر است:
+		}
+		$$
+		cosine\_similarity = \cos(\theta) = \frac{\mathbf{A} \cdot \mathbf{B}}{\|\mathbf{A}\| \|\mathbf{B}\|}
+		$$
+		
+				
+	\section{متد \lr{search}}
+		
+		\begin{center}
+			{\includegraphics[width=11cm]{images/11.png}}
+		\end{center}
+		
+		{\normalsize 
+			در این متد جست‌و‌جو براساس امتیازاتی که در متد \lr{\_cosine\_similarity} محاسبه شد انجام و 10 نتیجه اول به ترتیب تشابه برگشت‌داده می‌شود.
+		}
+		
+			
+	\section{استفاده}
+	
+		\begin{center}
+			{\includegraphics[width=10cm]{images/12.png}} \par
+		\end{center}
+	
+		{\normalsize 
+			برای استفاده از کلاس گفته شده این کد نوشته شده که بعد از فراخوانی کلاس ایجاد شده و پس از خواندن داکیومنت‌ها و ایجاد \lr{Inverted Index}، بردار \lr{tf-idf} ایجاد و در نهایت با دریافت ورودی با استفاده از فرمول تشابه \lr{cosine} نتایج دریافت و چاپ می‌شود.
+		}		
+	
+		{\normalsize برای مثال برای ورودی مانند تصویر زیر:}
+	
+		\begin{center}
+			{\includegraphics[width=6cm]{images/13.png}} \par
+		\end{center}
+	
+		{\normalsize خروجی مانند تصویر زیر تولید می‌شود.}
+	
+		\begin{center}
+			{\includegraphics[width=6cm]{images/14.png}} \par
+		\end{center}
+	
+	
+	
+\end{document}
